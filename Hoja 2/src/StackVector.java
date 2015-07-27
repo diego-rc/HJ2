@@ -96,4 +96,8 @@ public class StackVector<E> implements Stack<E> {
     public boolean empty(){
         return this.size()==0;
     }
+    
+    public String toString(){
+        return data.toString();
+    }
 }
