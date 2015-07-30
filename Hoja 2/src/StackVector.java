@@ -86,7 +86,12 @@ public class StackVector<E> implements Stack<E> {
     }
     
     public E peek(){
-        return data.get(data.size()-1);
+        if(this.size()>0){
+            return data.get(data.size()-1);
+        }
+        else{
+            return null;
+        }
     }
     
     public int size(){

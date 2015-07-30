@@ -26,6 +26,7 @@ public class MiCalcu implements Calculadora {
     @Override
     public void setString(String linea){
         cadena = linea;
+        data=new StackVector<>();
     }
     
     @Override
@@ -35,7 +36,7 @@ public class MiCalcu implements Calculadora {
     
     @Override
     public void meterVector(){
-        error=this.calcularVector();
+        error=calcularVector();
         if(!error){
             System.out.println("Error");
             System.out.print("Valores en el Stack"+data);
@@ -45,12 +46,12 @@ public class MiCalcu implements Calculadora {
     @Override
     public boolean calcularVector(){
         boolean flag=true;
-        
         cadena.replace(" ","");
-        for(int i=0; i==cadena.length(); i++){
+        for(int i=0; i<cadena.length(); i++){
             String car=cadena.substring(i, i+1);
             if (car.equals("0")||car.equals("1")||car.equals("2")||car.equals("3")||car.equals("4")||car.equals("5")||car.equals("6")||car.equals("7")||car.equals("8")||car.equals("9")){
                 data.push(Integer.parseInt(car));
+                System.out.println(data);
             }
             else if(car.equals("*")||car.equals("+")||car.equals("-")||car.equals("/")){
                 if (data.size()<2){
@@ -58,6 +59,7 @@ public class MiCalcu implements Calculadora {
                     i=cadena.length();
                 }
                 else{
+                    System.out.println(car);
                     int dat1;
                     int dat2;
                     dat2=data.pop();
@@ -82,15 +84,16 @@ public class MiCalcu implements Calculadora {
                             data.push(dat1/dat2);
                         }
                     }
-                    
+                    System.out.println(data);
                 }
             }
             else{
                 flag=false;
                 i=cadena.length();
+                System.out.println(data);
             }
         }
-        
+        System.out.println(data);
         if(data.size()>1){
             System.out.println("Advertencia: quedaron valores sin operar en la calculadora");
         }
